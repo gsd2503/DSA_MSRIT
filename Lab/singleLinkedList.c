@@ -1,20 +1,15 @@
-// Chatgpt Program
-
 #include <stdio.h>
 #include <stdlib.h>
 
-// Node structure
 struct Node {
     int data;
     struct Node* next;
 };
 
-// Global variables
-struct Node* head = NULL; // Head pointer for the linked list
-int count = 0;    // Current number of elements
-int MAX_SIZE = 0; // Maximum list size, set by the user
 
-// Function to create a new node
+struct Node* head = NULL; 
+int count = 0;    
+int MAX_SIZE = 0; 
 struct Node* createNode(int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
@@ -22,7 +17,6 @@ struct Node* createNode(int data) {
     return newNode;
 }
 
-// Insert at the beginning
 void insertAtBegin(int data) {
     if (count >= MAX_SIZE) {
         printf("List is full! Cannot insert more elements.\n");
@@ -34,7 +28,6 @@ void insertAtBegin(int data) {
     count++;
 }
 
-// Insert at the end
 void insertAtEnd(int data) {
     if (count >= MAX_SIZE) {
         printf("List is full! Cannot insert more elements.\n");
@@ -52,7 +45,6 @@ void insertAtEnd(int data) {
     count++;
 }
 
-// Insert at a specific position
 void insertInMiddle(int data, int position) {
     if (count >= MAX_SIZE) {
         printf("List is full! Cannot insert more elements.\n");
@@ -80,7 +72,6 @@ void insertInMiddle(int data, int position) {
     count++;
 }
 
-// Delete from the beginning
 void deleteAtBegin() {
     if (head == NULL) {
         printf("List is empty!\n");
@@ -92,7 +83,6 @@ void deleteAtBegin() {
     count--;
 }
 
-// Delete from the end
 void deleteAtEnd() {
     if (head == NULL) {
         printf("List is empty!\n");
@@ -107,7 +97,7 @@ void deleteAtEnd() {
         temp = temp->next;
     }
 
-    if (prev == NULL) // Only one node
+    if (prev == NULL) 
         head = NULL;
     else
         prev->next = NULL;
@@ -116,7 +106,6 @@ void deleteAtEnd() {
     count--;
 }
 
-// Delete at a specific position
 void deleteInMiddle(int position) {
     if (head == NULL) {
         printf("List is empty!\n");
@@ -148,7 +137,6 @@ void deleteInMiddle(int position) {
     count--;
 }
 
-// Display the list
 void displayList() {
     if (head == NULL) {
         printf("List is empty!\n");
@@ -163,7 +151,24 @@ void displayList() {
     printf("NULL\n");
 }
 
-// Main function with user-defined max size
+void searchList(int data) {
+    if (head == NULL) {
+        printf("List is empty!\n");
+        return;
+    }
+
+    struct Node* temp = head;
+    int pos = 0;
+    while (temp != NULL) {
+        if(temp->data == data){
+            printf("%d is at position %d", temp->data, pos);
+            return;
+        }
+        temp = temp->next;
+        pos++;
+    }
+}
+
 int main() {
     int choice, data, position;
 
@@ -179,7 +184,8 @@ int main() {
         printf("5. Delete from End\n");
         printf("6. Delete from a Position\n");
         printf("7. Display List\n");
-        printf("8. Exit\n");
+        printf("8. Find an element\n");
+        printf("9. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
@@ -216,12 +222,17 @@ int main() {
                 displayList();
                 break;
             case 8:
+                printf("Enter an element to find in list: ");
+                scanf("%d",&data);
+                searchList(data);
+                break;
+            case 9:
                 printf("Exiting program.\n");
                 exit(0);
             default:
                 printf("Invalid choice! Please try again.\n");
+
         }
     }
-
     return 0;
 }
