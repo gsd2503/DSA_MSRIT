@@ -1,20 +1,15 @@
-// Chat GPT version
-
 #include <stdio.h>
 #include <stdlib.h>
 
-// Node structure for circular singly linked list
 struct Node {
     int data;
     struct Node* next;
 };
 
-// Global variables
-struct Node* head = NULL; // Head pointer
-int count = 0;    // Current number of elements
-int MAX_SIZE = 0; // Maximum list size, set by the user
+struct Node* head = NULL; 
+int count = 0;   
+int MAX_SIZE = 0; 
 
-// Function to create a new node
 struct Node* createNode(int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
@@ -22,7 +17,6 @@ struct Node* createNode(int data) {
     return newNode;
 }
 
-// Insert at the beginning
 void insertAtBegin(int data) {
     if (count >= MAX_SIZE) {
         printf("List is full! Cannot insert more elements.\n");
@@ -32,7 +26,7 @@ void insertAtBegin(int data) {
     struct Node* newNode = createNode(data);
     if (head == NULL) {
         head = newNode;
-        newNode->next = head; // Circular reference
+        newNode->next = head; 
     } else {
         struct Node* temp = head;
         while (temp->next != head)
@@ -45,7 +39,6 @@ void insertAtBegin(int data) {
     count++;
 }
 
-// Insert at the end
 void insertAtEnd(int data) {
     if (count >= MAX_SIZE) {
         printf("List is full! Cannot insert more elements.\n");
@@ -55,7 +48,7 @@ void insertAtEnd(int data) {
     struct Node* newNode = createNode(data);
     if (head == NULL) {
         head = newNode;
-        newNode->next = head; // Circular reference
+        newNode->next = head;
     } else {
         struct Node* temp = head;
         while (temp->next != head)
@@ -67,7 +60,6 @@ void insertAtEnd(int data) {
     count++;
 }
 
-// Insert at a specific position
 void insertInMiddle(int data, int position) {
     if (count >= MAX_SIZE) {
         printf("List is full! Cannot insert more elements.\n");
@@ -89,7 +81,6 @@ void insertInMiddle(int data, int position) {
     count++;
 }
 
-// Delete from the beginning
 void deleteAtBegin() {
     if (head == NULL) {
         printf("List is empty!\n");
@@ -97,7 +88,7 @@ void deleteAtBegin() {
     }
 
     struct Node* temp = head;
-    if (head->next == head) { // Only one node
+    if (head->next == head) {
         head = NULL;
     } else {
         struct Node* last = head;
@@ -112,7 +103,6 @@ void deleteAtBegin() {
     count--;
 }
 
-// Delete from the end
 void deleteAtEnd() {
     if (head == NULL) {
         printf("List is empty!\n");
@@ -122,7 +112,7 @@ void deleteAtEnd() {
     struct Node* temp = head;
     struct Node* prev = NULL;
     
-    if (head->next == head) { // Only one node
+    if (head->next == head) {
         head = NULL;
     } else {
         while (temp->next != head) {
@@ -136,7 +126,6 @@ void deleteAtEnd() {
     count--;
 }
 
-// Delete at a specific position
 void deleteInMiddle(int position) {
     if (head == NULL) {
         printf("List is empty!\n");
@@ -165,7 +154,6 @@ void deleteInMiddle(int position) {
     count--;
 }
 
-// Search for an element
 void searchElement(int value) {
     if (head == NULL) {
         printf("List is empty!\n");
@@ -187,7 +175,6 @@ void searchElement(int value) {
     printf("Element %d not found in the list.\n", value);
 }
 
-// Display the list
 void displayList() {
     if (head == NULL) {
         printf("List is empty!\n");
@@ -203,7 +190,6 @@ void displayList() {
     printf("(head)\n");
 }
 
-// Main function with user-defined max size
 int main() {
     int choice, data, position;
 
