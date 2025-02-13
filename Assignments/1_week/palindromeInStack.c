@@ -1,3 +1,4 @@
+// Write a C code to check for palindrome using Stacks
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
