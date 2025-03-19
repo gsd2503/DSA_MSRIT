@@ -1,3 +1,5 @@
+// Improvised code - easier version
+
 #include<stdio.h>
 #include<stdlib.h>
 
